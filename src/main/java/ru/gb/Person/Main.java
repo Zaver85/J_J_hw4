@@ -13,19 +13,16 @@ public class Main {
         try {
             entityManager.getTransaction().begin();
 
-            // Соз дание объектов Person
             Person alice = new Person("Alice", 30);
             Person bob = new Person("Bob", 25);
             Person charlie = new Person("Charlie", 35);
 
-            // Сохранение объектов в базу данных
             entityManager.persist(alice);
             entityManager.persist(bob);
             entityManager.persist(charlie);
 
             entityManager.getTransaction().commit();
 
-            // Запрос всех объектов Person из базы данных
             List<Person> persons = entityManager.createQuery("SELECT p FROM Person p", Person.class).getResultList();
             System.out.println("All persons:");
             for (Person person : persons) {
